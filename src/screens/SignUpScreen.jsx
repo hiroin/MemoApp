@@ -11,7 +11,7 @@ export default function SignUpScreen(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handlePress() {
+  const handlePress = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredentiol) => {
         const { user } = userCredentiol;
@@ -24,7 +24,7 @@ export default function SignUpScreen(props) {
         console.log(error.code, error.message);
         Alert.alert(error.code);
       });
-  }
+  };
 
   return (
     <View style={styles.container}>

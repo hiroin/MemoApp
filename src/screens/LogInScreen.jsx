@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, TextInput, Text, TouchableOpacity, Alert
+  StyleSheet, View, TextInput, Text, TouchableOpacity, Alert,
 } from 'react-native';
 import firebase from 'firebase';
 import Button from '../components/Button';
@@ -10,7 +10,7 @@ export default function LogInScreen(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handlePress() {
+  const handlePress = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         (userCredential) => {
@@ -25,7 +25,8 @@ export default function LogInScreen(props) {
       .catch((error) => {
         Alert.alert(error.code);
       });
-  }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
