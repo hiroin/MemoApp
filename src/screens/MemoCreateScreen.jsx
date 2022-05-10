@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, TextInput,
+  StyleSheet, View, TextInput, Alert,
 } from 'react-native';
 import firebase from 'firebase';
 import KeyboardSafeView from '../components/KeyboradSafeView';
 import CircleButton from '../components/CircleButton';
+import { transelateErrors } from '../utils';
 
 export default function MemoCreateScreen(props) {
   const { navigation } = props;
@@ -18,12 +19,12 @@ export default function MemoCreateScreen(props) {
       bodyText,
       updatedAt: new Date(),
     })
-      .then((dockRef) => {
-        console.log('Created!', dockRef.id);
+      .then(() => {
         navigation.goBack();
       })
       .catch((error) => {
-        console.log('Error!', error);
+        const errorMsg = transelateErrors(error.code);
+        Alert.alert(errorMsg.title, errorMsg.description);
       });
   };
 
