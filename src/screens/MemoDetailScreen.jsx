@@ -34,10 +34,12 @@ export default function MemoDetailScreen(props) {
         <Text style={styles.memoTitle} numberOfLines={1}>{memo && memo.bodyText}</Text>
         <Text style={styles.memoDate}>{ memo && dateToString(memo.updatedAt)}</Text>
       </View>
-      <ScrollView style={styles.memoBody}>
-        <Text style={styles.memoText}>
-          {memo && memo.bodyText}
-        </Text>
+      <ScrollView>
+        <View style={styles.memoBodyInner}>
+          <Text style={styles.memoText}>
+            {memo && memo.bodyText}
+          </Text>
+        </View>
       </ScrollView>
       <CircleButton
         style={{ top: 60, bottom: 'auto' }}
@@ -77,9 +79,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
   },
-  memoBody: {
-    paddingVertical: 32,
+  memoBodyInner: {
     paddingHorizontal: 27,
+    paddingTop: 32,
+    paddingBottom: 80,
   },
   memoText: {
     fontSize: 16,
